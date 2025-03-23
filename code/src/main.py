@@ -1,14 +1,20 @@
 import uvicorn
-import os
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile, Form
+
+
 from models.email_request import EmailRequest
 
 from services.email_extraction import (
-    extract_email_content_with_nlp,
-    extract_contextual_data,
+    # extract_email_content_with_nlp,
+    # extract_contextual_data,
+    extract_pdf_content_with_fitz,
+    extract_attachments_from_eml,
+    extract_docx_content,
+    extract_email_body_and_subject,
 )
 from services.classification import classify_with_gemini
 from services.duplicate_detection import (
@@ -28,9 +34,40 @@ app = FastAPI()
 
 
 @app.post("/classify_email")
-async def classify_email(request: EmailRequest):
+async def classify_email(request_data: str = Form(...), file: UploadFile = File(...)):
     try:
-        file_path = request.file_path
+        request_dict = json.loads(request_data)
+
+        request = EmailRequest(**request_dict)
+
+        eml_content = await file.read()
+        # print(content)
+        attachments = extract_attachments_from_eml(eml_content)
+
+        attachment_texts = []
+        # Print or process the extracted attachments
+        for attachment in attachments:
+            if attachment["filename"].lower().endswith(".pdf"):
+                # Extract text from the PDF file using fitz
+                pdf_text = extract_pdf_content_with_fitz(attachment["content"])
+                attachment_texts.append(
+                    {"filename": attachment["filename"], "content": pdf_text}
+                )
+
+            elif attachment["filename"].lower().endswith(".docx"):
+                # Extract text from the .docx file using python-docx
+                docx_text = extract_docx_content(attachment["content"])
+                attachment_texts.append(
+                    {"filename": attachment["filename"], "content": docx_text}
+                )
+
+            print(
+                f"Attachment: {attachment['filename']} (size: {len(attachment['content'])} bytes)"
+            )
+
+        print(extract_email_body_and_subject(eml_content).get("subject"))
+
+        # file_path = request.file_path
         sender = request.sender
 
         user_disputes_duplicate = (
@@ -39,9 +76,12 @@ async def classify_email(request: EmailRequest):
             else False
         )
 
-        email_text, attachment_text = extract_email_content_with_nlp(file_path)
-
-        # extracted_context = extract_contextual_data(email_text, attachment_text)
+        # email_text, attachment_text = extract_email_content_with_nlp(file_path)
+        email_text = extract_email_body_and_subject(eml_content).get("body")
+        subject = extract_email_body_and_subject(eml_content).get("subject")
+        attachment_text = " ".join(
+            [attachment["content"] for attachment in attachment_texts]
+        )
 
         predefined_categories = request.predefined_categories or {}
         priority_rules = request.priority_rules or {
@@ -60,21 +100,22 @@ async def classify_email(request: EmailRequest):
                 "duplicate_email_id": duplicate_id,
                 "score": score,
             }
-        # subject = extracted_context.get("subject", "Unknown Subject")
+
         classification = classify_with_gemini(
             email_text,
             attachment_text,
+            subject,
             sender,
             priority_rules,
             predefined_categories,
         )
         store_email_in_elasticsearch(
-            email_text,
-            attachment_text,
+            email_text + "\n" + attachment_text,
             sender,
-            classification.get("key_entities", None).get("subject", "Unknown Subject"),
+            subject,
             classification,
         )
+
         print(classification)
         response = {
             "classification": classification.get("classification", None),

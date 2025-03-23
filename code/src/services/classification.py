@@ -7,7 +7,7 @@ def remove_first_and_last_line(input_string):
     lines = input_string.splitlines()
     return "\n".join(lines[1:-1])  # Exclude the first and last lines
 
-def classify_with_gemini(email_text, attachment_text, sender, priority_rules, predefined_categories):
+def classify_with_gemini(email_text, attachment_text, subject, sender, priority_rules, predefined_categories):
     client = genai.Client(
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
@@ -143,6 +143,7 @@ VII. Specialized Requests:
                     Email:
                     ```
                     Sender: {sender}
+                    Subject: {subject}
                     Content: {email_text}
                     Attachment: {attachment_text}
                     ```

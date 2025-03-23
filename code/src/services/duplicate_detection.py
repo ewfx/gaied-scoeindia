@@ -8,24 +8,78 @@ es = Elasticsearch(
     api_key=api_key,
 )
 
+SIMILARITY_THRESHOLD = 0.9
+
+
+def get_elasticsearch_vector(email_text):
+    """
+    Use Elasticsearch's built-in text embedding model to generate a vector for the email text.
+
+    :param email_text: The email content as a string
+    :return: A dense vector representation of the text
+    """
+    response = es.ingest.simulate(
+        id="text_embedding_pipeline",
+        docs=[{"_source": {"text": email_text}}],
+    )
+
+    if "docs" in response and response["docs"]:
+        return response["docs"][0]["_source"]["text_embedding"]
+
+    return None
+
 
 def check_duplicate_email(email_text):
-    query = {"query": {"match": {"content": email_text}}}
+    """
+    Check if an email is a duplicate based on vector similarity.
+
+    :param email_text: The email content as a string
+    :return: (is_duplicate, matched_doc_id, similarity_score)
+    """
+    email_vector = get_elasticsearch_vector(email_text)
+    if email_vector is None:
+        return False, None, None
+
+    query = {
+        "size": 1,
+        "query": {
+            "script_score": {
+                "query": {"match_all": {}},
+                "script": {
+                    "source": "cosineSimilarity(params.query_vector, 'content_vector') + 1.0",
+                    "params": {"query_vector": email_vector},
+                },
+            }
+        },
+    }
+
     response = es.search(index="emails", body=query)
+
     if response["hits"]["total"]["value"] > 0:
-        return (
-            True,
-            response["hits"]["hits"][0]["_id"],
-            response["hits"]["hits"][0]["_score"],
-        )
-    return False, None, 0
+        top_hit = response["hits"]["hits"][0]
+        similarity_score = (top_hit["_score"] - 1.0) / 2  # Normalize to 0-1
+
+        if similarity_score > SIMILARITY_THRESHOLD:
+            return True, top_hit["_id"], similarity_score
+
+    return False, None, None
 
 
-def store_email_in_elasticsearch(
-    email_text, attachment_text, sender, subject, classification
-):
+def store_email_in_elasticsearch(email_text, sender, subject, classification):
+    """
+    Convert email text to vector using Elasticsearch embeddings and store in Elasticsearch.
+
+    :param email_text: The email content as a string
+    :param sender: Sender of the email
+    :param subject: Subject of the email
+    :param classification: Classification of the email
+    """
+    email_vector = get_elasticsearch_vector(email_text)
+    if email_vector is None:
+        raise ValueError("Failed to generate vector for the email text.")
+
     doc = {
-        "content": email_text + "\n" + attachment_text,
+        "content_vector": email_vector,  # Store the generated vector
         "sender": sender,
         "subject": subject,
         "classification": classification,
