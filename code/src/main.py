@@ -40,9 +40,8 @@ async def classify_email(request: EmailRequest):
         )
 
         email_text, attachment_text = extract_email_content_with_nlp(file_path)
-        print(email_text, attachment_text)
-        extracted_context = extract_contextual_data(email_text, attachment_text)
-        subject = extracted_context.get("subject", "Unknown Subject")
+
+        # extracted_context = extract_contextual_data(email_text, attachment_text)
 
         predefined_categories = request.predefined_categories or {}
         priority_rules = request.priority_rules or {
@@ -52,7 +51,7 @@ async def classify_email(request: EmailRequest):
         }
 
         is_duplicate, duplicate_id, score = check_duplicate_email(email_text)
-        print(user_disputes_duplicate)
+
         if is_duplicate and not user_disputes_duplicate:
             return {
                 "message": "Duplicate email detected",
@@ -61,23 +60,26 @@ async def classify_email(request: EmailRequest):
                 "duplicate_email_id": duplicate_id,
                 "score": score,
             }
-
+        # subject = extracted_context.get("subject", "Unknown Subject")
         classification = classify_with_gemini(
             email_text,
             attachment_text,
             sender,
-            subject,
             priority_rules,
             predefined_categories,
         )
         store_email_in_elasticsearch(
-            email_text, attachment_text, sender, subject, classification
+            email_text,
+            attachment_text,
+            sender,
+            classification.get("key_entities", None).get("subject", "Unknown Subject"),
+            classification,
         )
-
+        print(classification)
         response = {
-            "classification": classification,
+            "classification": classification.get("classification", None),
             "is_duplicate": False,
-            "extracted_context": extracted_context,
+            "extracted_context": classification.get("key_entities", None),
             "email_content": email_text,
             "attachment_content": attachment_text,
         }

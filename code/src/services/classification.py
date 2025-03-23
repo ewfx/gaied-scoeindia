@@ -7,7 +7,7 @@ def remove_first_and_last_line(input_string):
     lines = input_string.splitlines()
     return "\n".join(lines[1:-1])  # Exclude the first and last lines
 
-def classify_with_gemini(email_text, attachment_text, sender, subject, priority_rules, predefined_categories):
+def classify_with_gemini(email_text, attachment_text, sender, priority_rules, predefined_categories):
     client = genai.Client(
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
@@ -20,14 +20,23 @@ def classify_with_gemini(email_text, attachment_text, sender, subject, priority_
         response_mime_type="text/plain",
         system_instruction=[
             types.Part.from_text(
-                text="""You are part of commercial bank lending service team, you have to classify the email/service request into the following request and sub request types if request and sub request types are not mentioned in user query.  There can be multiple classifications also. Output should be in a json array format like this. return in order of the confidence_score in descending order, the first should be the primary result having more score than others. Return 3 results if not user does not mention the number of results.
-Return the output in json in the following format:
+                text="""You are part of commercial bank lending service team, you have to classify the email/service request into the following request and sub request types if request and sub request types are not mentioned in user query.  There can be multiple classifications also. Also extract the key entities from the email in the given format. Output should be in a json array format like this. return in order of the confidence_score in descending order, the first should be the primary result having more score than others. Return 3 results if not user does not mention the number of results.
+Return the output strictly in json in the following format:
 ```
-[{
-\"request_type\":\"\",
-\"sub_request_type\":\"\",
-\"confidence_score\":\"\"
-}]
+{
+    "classification":[{
+        \"request_type\":\"\",
+        \"sub_request_type\":\"\",
+        \"confidence_score\":\"\"
+    }],
+    "key_entities":{
+        "deal_name": "", // deal name if mentioned in mail
+        "amount": "",  //transaction amount if mentioned in mail
+        "expiration_date": "", //expiration date if mentioned in mail
+        "subject": "", //subject of email
+        // can add more key entities if found
+    }
+}
 ```
 
 Use these Request and sub request types if not mentioend in  user query
@@ -133,7 +142,6 @@ VII. Specialized Requests:
                     text=f"""Classify This Email {"into these "+predefined_categories if predefined_categories else ""}-
                     Email:
                     ```
-                    Subject: {subject}
                     Sender: {sender}
                     Content: {email_text}
                     Attachment: {attachment_text}
