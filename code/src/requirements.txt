@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pydantic
+pypdf
+pymupdf
+python-docx
+unstructured
+google-generativeai
+elasticsearch
+opencv-python
+numpy
+pytesseract
+pdf2image
+nest-asyncio
