@@ -63,7 +63,7 @@ Describe the major technical or non-technical challenges your team encountered.
    ```sh
    python main.py
    ```
-   Application will be up and runing on http://0.0.0.0:8000
+   Application will be up and running on http://0.0.0.0:8000
 
 ## 🏗️ Tech Stack
 - 🔹 Frontend: HTML, JQuery, Javascript, Bootstrap
