@@ -39,6 +39,10 @@ What inspired you to create this project? Describe the problem you're solving.
 6) Handles multi request email with primary intent identification
 7) Priority based extraction where user can define priority rules
 
+High Level Flow diagram
+![Screenshot 2](artifacts/arch/flow_chart.svg)
+
+
 ## 🛠️ How We Built It
 Briefly outline the technologies, frameworks, and tools used in development.
 
