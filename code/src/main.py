@@ -90,7 +90,9 @@ async def classify_email(request_data: str = Form(...), file: UploadFile = File(
             "keywords_priority": {},
         }
 
-        is_duplicate, duplicate_id, score = check_duplicate_email(email_text)
+        is_duplicate, duplicate_id, score = check_duplicate_email(
+            email_text + "\n" + attachment_text,
+        )
 
         if is_duplicate and not user_disputes_duplicate:
             return {
@@ -116,7 +118,6 @@ async def classify_email(request_data: str = Form(...), file: UploadFile = File(
             classification,
         )
 
-        print(classification)
         response = {
             "classification": classification.get("classification", None),
             "is_duplicate": False,
