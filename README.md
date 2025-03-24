@@ -40,7 +40,7 @@ Describe the major technical or non-technical challenges your team encountered.
    ```sh
    git clone https://github.com/ewfx/gaied-scoeindia.git
    ```
-2. Go to sec folder
+2. Go to src folder
    ```sh
    cd ./code/src
    ```
