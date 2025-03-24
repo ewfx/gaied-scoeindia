@@ -51,10 +51,13 @@ Describe the major technical or non-technical challenges your team encountered.
 
 ## 🏗️ Tech Stack
 - 🔹 Frontend: React / Vue / Angular
-- 🔹 Backend: Node.js / FastAPI / Django
-- 🔹 Database: PostgreSQL / Firebase
-- 🔹 Other: OpenAI API / Twilio / Stripe
+- 🔹 Backend: Python, FastAPI, Google GenAI Python SDK
+- 🔹 Database: Elasticsearch
+- 🔹 Other: Gemini suite of models for GenAI task: LLM - "gemini-2.0-flash", Embeddings model - ""text-embedding-004""
 
 ## 👥 Team
-- **Your Name** - [GitHub](#) | [LinkedIn](#)
-- **Teammate 2** - [GitHub](#) | [LinkedIn](#)
+- **Sparsh Jain** - [GitHub](https://github.com/SparshJain2000) | [LinkedIn](https://www.linkedin.com/in/jain-sparsh/)
+- **Ashish** - [GitHub](#) | [LinkedIn](#)
+- **Madhurya** - [GitHub](#) | [LinkedIn](#)
+- **Ashwini** - [GitHub](#) | [LinkedIn](#)
+- **Saraiah** - [GitHub](#) | [LinkedIn](#)
