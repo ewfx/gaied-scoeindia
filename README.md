@@ -66,7 +66,7 @@ Describe the major technical or non-technical challenges your team encountered.
    Application will be up and runing on http://0.0.0.0:8000
 
 ## 🏗️ Tech Stack
-- 🔹 Frontend: React / Vue / Angular
+- 🔹 Frontend: HTML, JQuery, Javascript, Bootstrap
 - 🔹 Backend: Python, FastAPI, Google GenAI Python SDK
 - 🔹 Database: Elasticsearch
 - 🔹 Other: Gemini suite of models for GenAI task: LLM - "gemini-2.0-flash", Embeddings model - "text-embedding-004"
