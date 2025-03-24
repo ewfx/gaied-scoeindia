@@ -38,16 +38,32 @@ Describe the major technical or non-technical challenges your team encountered.
 ## 🏃 How to Run
 1. Clone the repository  
    ```sh
-   git clone https://github.com/your-repo.git
+   git clone https://github.com/ewfx/gaied-scoeindia.git
    ```
-2. Install dependencies  
+2. Go to sec folder
    ```sh
-   npm install  # or pip install -r requirements.txt (for Python)
+   cd ./code/src
    ```
-3. Run the project  
+3. Install dependencies 
    ```sh
-   npm start  # or python app.py
+   pip install -r requirements.txt
    ```
+4. Install spacy and en model
+   ```sh
+   pip install spacy
+   python3 -m spacy download en
+   ```
+6. Create .env file with following content
+   ```sh
+   ELASTIC_API_KEY=<API KEY to connect to Elasticsearch cluster>
+   GEMINI_API_KEY=<API KEY to connect to Gemini models>
+   CLOUD_ID=<CLOUD ID of the Elasticsearch cloud cluster>
+   ```
+7. Run the project  
+   ```sh
+   python main.py
+   ```
+   Application will be up and runing on http://0.0.0.0:8000
 
 ## 🏗️ Tech Stack
 - 🔹 Frontend: React / Vue / Angular
