@@ -78,9 +78,14 @@ def check_duplicate_email(email_text):
         similarity_score = (top_hit["_score"]) / 2  # Normalize to 0-1
         print(">>>", similarity_score)
         if similarity_score > SIMILARITY_THRESHOLD:
-            return True, top_hit["_id"], similarity_score
+            return (
+                True,
+                top_hit["_id"],
+                similarity_score,
+                response["hits"]["hits"][0]["_source"]["classification"],
+            )
 
-    return False, None, None
+    return False, None, None, None
 
 
 def store_email_in_elasticsearch(email_text, sender, subject, classification):
