@@ -34,7 +34,7 @@ Return the output strictly in json in the following format:
         "amount": "",  //transaction amount if mentioned in mail
         "expiration_date": "", //expiration date if mentioned in mail
         "subject": "", //subject of email
-        // can add more key entities if found
+        // add at least 2 and at most 5 more key entities if found
     }
 }
 ```

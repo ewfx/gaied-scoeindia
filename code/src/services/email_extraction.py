@@ -2,10 +2,10 @@ import os
 import pytesseract
 import io
 import fitz  # PyMuPDF for PDF processing
-from pdf2image import convert_from_path
+from PIL import Image
 from docx import Document
 from unstructured.partition.email import partition_email
-
+from bs4 import BeautifulSoup  # Import BeautifulSoup for HTML parsing
 import spacy
 import email
 from email import policy
@@ -28,21 +28,33 @@ def extract_text_from_docx(docx_path):
     return "\n".join([para.text for para in doc.paragraphs])
 
 
+def extract_text_from_image(image_bytes):
+    try:
+        img = Image.open(io.BytesIO(image_bytes))
+        text = pytesseract.image_to_string(img)
+        return text.strip()
+    except Exception as e:
+        return f"Error processing image: {str(e)}"
+
+
 def extract_text_from_eml(eml_path):
     elements = partition_email(filename=eml_path)
     return "\n".join(str(element) for element in elements)
 
 
-def extract_text_with_ocr(pdf_path):
-    print(pdf_path)
+def extract_text_with_ocr(bytes, type):
     text = ""
+    doc = fitz.open(stream=bytes, filetype=type)
 
-    # images = convert_from_path(pdf_path)
-    # print(images)
-    # for image in images:
-    #     print(image)
-    #     text += pytesseract.image_to_string(image) + "\n"
-    # print(text)
+    for page_num in range(len(doc)):
+        for img_index, img in enumerate(doc[page_num].get_images(full=True)):
+            xref = img[0]
+            base_image = doc.extract_image(xref)
+            image_bytes = base_image["image"]
+            image = Image.open(io.BytesIO(image_bytes))
+
+            # Extract text from image using Tesseract OCR
+            text += pytesseract.image_to_string(image) + "\n"
 
     return text.strip()
 
@@ -53,7 +65,7 @@ def extract_email_content_with_nlp(file_path):
 
     if ext == "pdf":
         email_content = extract_text_from_pdf(file_path)
-        attachment_content = extract_text_with_ocr(file_path)
+        # attachment_content = extract_text_with_ocr(file_path)
     elif ext == "docx":
         email_content = extract_text_from_docx(file_path)
     elif ext == "eml":
@@ -128,7 +140,19 @@ def extract_pdf_content_with_fitz(pdf_bytes):
             pdf_text += page.get_text()  # Extract text from the page
         pdf_document.close()
     except Exception as e:
-        print(f"Error extracting PDF content with fitz: {e}")
+        print(f"Error extracting PDF content with fitz: {e}.\n Trying OCR...")
+        try:
+            pdf_text += extract_text_with_ocr(pdf_bytes, "pdf")
+        except Exception as e2:
+            print(f"Error extracting PDF content with OCR: {e2}")
+
+    if pdf_text == "":
+        print("Could not extract PDF content.\n Trying OCR...")
+        try:
+            pdf_text += extract_text_with_ocr(pdf_bytes, "pdf")
+        except Exception as e2:
+            print(f"Error extracting PDF content with OCR: {e2}")
+
     return pdf_text
 
 
@@ -174,10 +198,24 @@ def extract_email_body_and_subject(eml_content):
                 body = part.get_payload(decode=True).decode(part.get_content_charset())
                 break
             elif content_type == "text/html":
-                body = part.get_payload(decode=True).decode(part.get_content_charset())
-                # You can use an HTML parser like BeautifulSoup to clean the HTML if needed
+                html_content = part.get_payload(decode=True).decode(
+                    part.get_content_charset()
+                )
+                # Convert HTML to plain text using BeautifulSoup
+                soup = BeautifulSoup(html_content, "html.parser")
+                body = soup.get_text()
+                break
     else:
         # If the email is not multipart, get the payload directly
-        body = msg.get_payload(decode=True).decode(msg.get_content_charset())
+        content_type = msg.get_content_type()
+        if content_type == "text/plain":
+            body = msg.get_payload(decode=True).decode(msg.get_content_charset())
+        elif content_type == "text/html":
+            html_content = msg.get_payload(decode=True).decode(
+                msg.get_content_charset()
+            )
+            # Convert HTML to plain text using BeautifulSoup
+            soup = BeautifulSoup(html_content, "html.parser")
+            body = soup.get_text()
 
     return {"subject": subject, "body": body}

@@ -9,26 +9,18 @@ from fastapi import FastAPI, File, UploadFile, Form
 from models.email_request import EmailRequest
 
 from services.email_extraction import (
-    # extract_email_content_with_nlp,
-    # extract_contextual_data,
+    extract_text_from_image,
     extract_pdf_content_with_fitz,
     extract_attachments_from_eml,
     extract_docx_content,
     extract_email_body_and_subject,
+    extract_text_with_ocr,
 )
 from services.classification import classify_with_gemini
 from services.duplicate_detection import (
     check_duplicate_email,
     store_email_in_elasticsearch,
 )
-
-# from services import (
-#     extract_email_content_with_nlp,
-#     classify_with_gemini,
-#     check_duplicate_email,
-#     store_email_in_elasticsearch,
-#     extract_contextual_data,
-# )
 
 app = FastAPI()
 
@@ -60,6 +52,13 @@ async def classify_email(request_data: str = Form(...), file: UploadFile = File(
                 attachment_texts.append(
                     {"filename": attachment["filename"], "content": docx_text}
                 )
+            elif attachment["filename"].lower().endswith((".jpg", ".png", ".jpeg")):
+                # Extract text from the .docx file using python-docx
+                ocr_text = extract_text_from_image(attachment["content"])
+                print("ocr", ocr_text)
+                attachment_texts.append(
+                    {"filename": attachment["filename"], "content": ocr_text}
+                )
 
             print(
                 f"Attachment: {attachment['filename']} (size: {len(attachment['content'])} bytes)"
@@ -90,7 +89,9 @@ async def classify_email(request_data: str = Form(...), file: UploadFile = File(
             "keywords_priority": {},
         }
 
-        is_duplicate, duplicate_id, score = check_duplicate_email(email_text)
+        is_duplicate, duplicate_id, score, classification = check_duplicate_email(
+            email_text + "\n" + attachment_text,
+        )
 
         if is_duplicate and not user_disputes_duplicate:
             return {
@@ -99,6 +100,8 @@ async def classify_email(request_data: str = Form(...), file: UploadFile = File(
                 "reason": "Similar content found in Elasticsearch",
                 "duplicate_email_id": duplicate_id,
                 "score": score,
+                "classification": classification.get("classification", None),
+                "extracted_context": classification.get("key_entities", None),
             }
 
         classification = classify_with_gemini(
@@ -116,13 +119,10 @@ async def classify_email(request_data: str = Form(...), file: UploadFile = File(
             classification,
         )
 
-        print(classification)
         response = {
             "classification": classification.get("classification", None),
             "is_duplicate": False,
             "extracted_context": classification.get("key_entities", None),
-            "email_content": email_text,
-            "attachment_content": attachment_text,
         }
         return response
 
