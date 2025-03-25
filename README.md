@@ -18,7 +18,7 @@ This project automates email classification and data extraction using Gen AI LLM
 
 ## 🎥 Demo
 🔗 [Live Demo](#) (if applicable)  
-📹 [Video Demo](artifacts/demo/VideoDemo.mp4) (if applicable)  
+📹 [Video Demo](artifacts/demo/VideoDemo.MP4) (if applicable)  
 🖼️ Screenshots:
 
 Email Classification reponse:
