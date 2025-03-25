@@ -55,6 +55,7 @@ PyMuPDF (fitz): For extracting text from PDF files.
 8) BeautifulSoup: For HTML content parsing.
 9) Postman: To test the Api.
 10) IDE: For developing the project.
+11) Canva: For creating the demo video.
 
 ## 🚧 Challenges We Faced
 Describe the major technical or non-technical challenges your team encountered.
