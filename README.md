@@ -22,10 +22,13 @@ This project automates email classification and data extraction using Gen AI LLM
 🖼️ Screenshots:
 
 Email Classification reponse:
-![Screenshot 1](artifacts/demo/screenshots/email_classification_response.jpeg)
+![Screenshot 1](artifacts/demo/screenshots/email_classification_response.png)
 
 Email Classification reponse for a duplicate email:
-![Screenshot 2](artifacts/demo/screenshots/duplicate_email_response.jpeg)
+![Screenshot 2](artifacts/demo/screenshots/duplicate_email_response.png)
+
+UI:
+![Screenshot 3](artifacts/demo/screenshots/UI_classification.jpeg)
 
 ## 💡 Inspiration
 What inspired you to create this project? Describe the problem you're solving.

@@ -1,7 +1,7 @@
 import uvicorn
 import json
 from dotenv import load_dotenv
-
+from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 from fastapi import FastAPI, File, UploadFile, Form
 
@@ -23,6 +23,16 @@ from services.duplicate_detection import (
 )
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/classify_email")
