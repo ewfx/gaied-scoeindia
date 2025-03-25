@@ -132,6 +132,6 @@ UI will be up and running on http://localhost:5000
 ## 👥 Team
 - **Sparsh** - [GitHub](https://github.com/SparshJain2000) | [LinkedIn](https://www.linkedin.com/in/jain-sparsh/)
 - **Ashish** - [GitHub](https://github.com/ashish4321) | [LinkedIn](https://www.linkedin.com/in/ashish1412)
-- **Madhurya** - [GitHub](#) | [LinkedIn](#)
-- **Ashwini** - [GitHub](#) | [LinkedIn](#)
-- **Saraiah** - [GitHub](#) | [LinkedIn](#)
+- **Madhurya** - [GitHub](https://github.com/madhurya13wells) | [LinkedIn](#)
+- **Ashwini** - [GitHub](https://github.com/Ashwini19nayak) | [LinkedIn](#)
+- **Saraiah** - [GitHub](https://github.com/saraiah_avula) | [LinkedIn](#)
