@@ -34,13 +34,14 @@ The manual process of data extraction and classification requires a team of gate
 
 ## ⚙️ What It Does
 1) Content Extraction from email and attachments
-2) Perform OCR
+2) Perform OCR on images and pdf in attachments
 3) Context based data extraction using LLM
 4) Detect duplicates by matching the vector embeddings stored in ElasticSearch
 5) Classify email using LLM into pre defined request and sub request types
 6) Handles multi request email with primary intent identification
 7) Priority based extraction where user can define priority rules
 8) An user interface where users can upload the emails and see classification response
+9) If an email is identified as duplicate and user disputes it as duplicate then they can send another request and it will classify the email
 
 High Level Flow diagram
 ![Screenshot 2](artifacts/arch/flow_chart.svg)
@@ -56,9 +57,10 @@ High Level Flow diagram
 PyMuPDF (fitz): For extracting text from PDF files.
 7) docx: For extracting text from DOCX files.
 8) BeautifulSoup: For HTML content parsing.
-9) Postman: To test the Api.
-10) IDE: For developing the project.
-11) Canva: For creating the demo video.
+9) ReactJS: To build the UI.
+10) Postman: To test the Api.
+11) IDE: For developing the project.
+12) Canva: For creating the demo video.
 
 ## 🚧 Challenges We Faced
 Describe the major technical or non-technical challenges your team encountered.
@@ -94,7 +96,7 @@ Describe the major technical or non-technical challenges your team encountered.
    Application will be up and running on http://0.0.0.0:8000
 
 ## 🏗️ Tech Stack
-- 🔹 Frontend: HTML, JQuery, Javascript, Bootstrap
+- 🔹 Frontend: HTML, CSS, React, TypeScript
 - 🔹 Backend: Python, FastAPI, Google GenAI Python SDK
 - 🔹 Database: Elasticsearch
 - 🔹 Other: Gemini suite of models for GenAI task: LLM - "gemini-2.0-flash", Embeddings model - "text-embedding-004"
