@@ -44,18 +44,17 @@ High Level Flow diagram
 
 
 ## 🛠️ How We Built It
-Frameworks and Tools:
-FastAPI: For building the web API.
-Uvicorn: For running the FastAPI application.
-Elasticsearch: For storing email data and performing similarity searches.
-Google Gemini (GenAI): For text classification and generating embeddings.
-spacy: For natural language processing tasks.
-pytesseract: For OCR processing.
+1) FastAPI: For building the web API.
+2) Uvicorn: For running the FastAPI application.
+3) Elasticsearch: For storing email data and performing similarity searches.
+4) Google Gemini (GenAI): For text classification and generating embeddings.
+5) spacy: For natural language processing tasks.
+6) pytesseract: For OCR processing.
 PyMuPDF (fitz): For extracting text from PDF files.
-docx: For extracting text from DOCX files.
-BeautifulSoup: For HTML content parsing.
-Postman: To test the Api.
-IDE: For developing the project.
+7) docx: For extracting text from DOCX files.
+8) BeautifulSoup: For HTML content parsing.
+9) Postman: To test the Api.
+10) IDE: For developing the project.
 
 ## 🚧 Challenges We Faced
 Describe the major technical or non-technical challenges your team encountered.
