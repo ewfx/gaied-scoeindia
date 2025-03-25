@@ -124,6 +124,7 @@ const Analyzer = () => {
                                 </ul>
 
                                 {/* Duplicate Email Warning */}
+                                <p>Is Duplicate : {result.is_duplicate ? "true" : "false"}</p>
                                 {result.is_duplicate && (
                                     <div className='duplicate-warning'>
                                         <span role='img' aria-label='warning'>
@@ -135,7 +136,6 @@ const Analyzer = () => {
                                         <p>Duplicate ID: {result.duplicate_email_id}</p>
                                     </div>
                                 )}
-
                                 {/* Extracted Context */}
                                 <h3>
                                     <span role='img' aria-label='pin'>

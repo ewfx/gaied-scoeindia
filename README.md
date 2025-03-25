@@ -21,16 +21,25 @@ This project automates email classification and data extraction using Gen AI LLM
 
 📹 [Video Demo](artifacts/demo/VideoDemo.MP4)
 
-🖼️ Screenshots:
+### 🖼️ Screenshots:
 
-Email Classification reponse:
+#### API Screenshots: 
+
+Email Classification response:
 ![Screenshot 1](artifacts/demo/screenshots/email_classification_response.png)
 
-Email Classification reponse for a duplicate email:
+Email Classification response for a duplicate email:
 ![Screenshot 2](artifacts/demo/screenshots/duplicate_email_response.png)
 
-UI:
+#### UI Screenshots:
+
+Email Classification:
+
 ![Screenshot 3](artifacts/demo/screenshots/UI_classification.jpeg)
+
+Duplicate Email Classification:
+
+![Screenshot 4](artifacts/demo/screenshots/UI_duplicate_response.jpeg)
 
 ## 💡 Inspiration
 The manual process of data extraction and classification requires a team of gate keepers , is time consuming and prone to human errors. The main objective of this project is to solve this use case of removing human intervention and automate the whole classification process.
@@ -69,6 +78,7 @@ PyMuPDF (fitz): For extracting text from PDF files.
 Describe the major technical or non-technical challenges your team encountered.
 
 ## 🏃 How to Run
+### How to Start the backend server
 1. Clone the repository  
    ```sh
    git clone https://github.com/ewfx/gaied-scoeindia.git
@@ -97,6 +107,21 @@ Describe the major technical or non-technical challenges your team encountered.
    python main.py
    ```
    Application will be up and running on http://0.0.0.0:8000
+
+### How to Start the UI
+1. Go to the UI folder
+   ```sh
+   cd ./UI
+   ```
+2. Install the node dependencies
+   ```sh
+   npm i
+   ```
+3. Start the frontend application
+   ```sh
+   npm start
+   ```
+UI will be up and running on http://localhost:5000
 
 ## 🏗️ Tech Stack
 - 🔹 Frontend: HTML, CSS, React, TypeScript
