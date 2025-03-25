@@ -14,11 +14,11 @@
 ---
 
 ## 🎯 Introduction
-This project automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time. The manual process of data extraction and classification requires a team of gate keepers , is time consuming and prone to human errors. The main objective of this project is to solve this use case of removing human intervention and automate the whole classification process.
+This project automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time. It also involves an UI where users can upload the email file and view the classification response. 
 
 ## 🎥 Demo
 🔗 [Live Demo](#) (if applicable)  
-📹 [Video Demo](artifacts/demo/VideoDemo.MP4) (if applicable)  
+📹 [Video Demo](artifacts/demo/VideoDemo.MP4)
 🖼️ Screenshots:
 
 Email Classification reponse:
@@ -28,7 +28,7 @@ Email Classification reponse for a duplicate email:
 ![Screenshot 2](artifacts/demo/screenshots/duplicate_email_response.jpeg)
 
 ## 💡 Inspiration
-What inspired you to create this project? Describe the problem you're solving.
+The manual process of data extraction and classification requires a team of gate keepers , is time consuming and prone to human errors. The main objective of this project is to solve this use case of removing human intervention and automate the whole classification process.
 
 ## ⚙️ What It Does
 1) Content Extraction from email and attachments
@@ -38,6 +38,7 @@ What inspired you to create this project? Describe the problem you're solving.
 5) Classify email using LLM into pre defined request and sub request types
 6) Handles multi request email with primary intent identification
 7) Priority based extraction where user can define priority rules
+8) An user interface where users can upload the emails and see classification response
 
 High Level Flow diagram
 ![Screenshot 2](artifacts/arch/flow_chart.svg)
