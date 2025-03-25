@@ -17,8 +17,10 @@
 This project automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time. It also involves an UI where users can upload the email file and view the classification response. 
 
 ## 🎥 Demo
-🔗 [Live Demo](#) (if applicable)  
+🔗 [Live Demo](#) (if applicable) 
+
 📹 [Video Demo](artifacts/demo/VideoDemo.MP4)
+
 🖼️ Screenshots:
 
 Email Classification reponse:
