@@ -134,4 +134,4 @@ UI will be up and running on http://localhost:5000
 - **Ashish** - [GitHub](https://github.com/ashish4321) | [LinkedIn](https://www.linkedin.com/in/ashish1412)
 - **Madhurya** - [GitHub](https://github.com/madhurya13wells) | [LinkedIn](https://www.linkedin.com/in/madhurya?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 - **Ashwini** - [GitHub](https://github.com/Ashwini19nayak) | [LinkedIn](#)
-- **Saraiah** - [GitHub](https://github.com/saraiah-avula) | [LinkedIn](#)
+- **Saraiah** - [GitHub](https://github.com/saraiah-avula) | [LinkedIn](https://www.linkedin.com/in/saraiah-avula-035982206/)
