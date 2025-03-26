@@ -17,7 +17,7 @@
 This AI powered tool automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time for responding emails and generates classified service requests. Its offering a user interface to end users where they upload the email file, pdf and image files and view the classification response. 
 
 ## 🎥 Demo
-🔗 [Live Demo](#) (if applicable) 
+🔗 [Live Demo](artifacts/demo/LiveDemo.mp4)
 
 📹 [Video Demo](artifacts/demo/DemoVideo.MP4)
 
