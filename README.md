@@ -75,7 +75,7 @@ PyMuPDF (fitz): For extracting text from PDF files.
 12) Canva: For creating the demo video.
 
 ## 🚧 Challenges We Faced
-Describe the major technical or non-technical challenges your team encountered.
+We faced initial challange with converting pdf to images to perform OCR. We were using pdf2image python library which was not converting the pdf to images properly.
 
 ## 🏃 How to Run
 ### How to Start the backend server
@@ -125,7 +125,7 @@ UI will be up and running on http://localhost:5000
 
 ## 🏗️ Tech Stack
 - 🔹 Frontend: HTML, CSS, React, TypeScript
-- 🔹 Backend: Python, FastAPI, Google GenAI Python SDK
+- 🔹 Backend: Python, FastAPI, Google GenAI, Python SDK
 - 🔹 Database: Elasticsearch
 - 🔹 Other: Gemini suite of models for GenAI task: LLM - "gemini-2.0-flash", Embeddings model - "text-embedding-004"
 
