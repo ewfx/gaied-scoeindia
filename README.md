@@ -2,7 +2,7 @@
 
 ## 📌 Table of Contents
 - [Introduction](#-introduction)
-- [Demo](#demo)
+- [Demo](#-demo)
 - [Inspiration](#-inspiration)
 - [What It Does](#-what-it-does)
 - [How We Built It](#-how-we-built-it)
@@ -19,7 +19,7 @@ This AI powered tool automates email classification and data extraction using Ge
 ## 🎥 Demo
 🔗 [Live Demo](#) (if applicable) 
 
-📹 [Video Demo](artifacts/demo/VideoDemo.MP4)
+📹 [Video Demo](artifacts/demo/DemoVideo.MP4)
 
 ### 🖼️ Screenshots:
 
