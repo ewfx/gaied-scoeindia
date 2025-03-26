@@ -8,7 +8,7 @@
 - [How We Built It](#-how-we-built-it)
 - [Challenges We Faced](#-challenges-we-faced)
 - [How to Run](#-how-to-run)
-- [Tech Stack](#-tech-stack)
+- [Tech Stack](#%EF%B8%8F-tech-stack)
 - [Team](#-team)
 
 ---
