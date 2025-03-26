@@ -14,7 +14,7 @@
 ---
 
 ## 🎯 Introduction
-This project automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time. It also involves an UI where users can upload the email file and view the classification response. 
+This AI powered tool automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time for responding emails and generates classified service requests. Its offering a user interface to end users where they upload the email file, pdf and image files and view the classification response. 
 
 ## 🎥 Demo
 🔗 [Live Demo](#) (if applicable) 
@@ -71,11 +71,11 @@ PyMuPDF (fitz): For extracting text from PDF files.
 8) BeautifulSoup: For HTML content parsing.
 9) ReactJS: To build the UI.
 10) Postman: To test the Api.
-11) IDE: For developing the project.
+11) Jupyter and VSCode IDE: For developing the project.
 12) Canva: For creating the demo video.
 
 ## 🚧 Challenges We Faced
-Describe the major technical or non-technical challenges your team encountered.
+We faced initial challange with converting pdf to images to perform OCR. We were using pdf2image python library which was not converting the pdf to images properly.
 
 ## 🏃 How to Run
 ### How to Start the backend server
@@ -125,13 +125,13 @@ UI will be up and running on http://localhost:5000
 
 ## 🏗️ Tech Stack
 - 🔹 Frontend: HTML, CSS, React, TypeScript
-- 🔹 Backend: Python, FastAPI, Google GenAI Python SDK
+- 🔹 Backend: Python, FastAPI, Google GenAI, Python SDK
 - 🔹 Database: Elasticsearch
 - 🔹 Other: Gemini suite of models for GenAI task: LLM - "gemini-2.0-flash", Embeddings model - "text-embedding-004"
 
 ## 👥 Team
 - **Sparsh** - [GitHub](https://github.com/SparshJain2000) | [LinkedIn](https://www.linkedin.com/in/jain-sparsh/)
 - **Ashish** - [GitHub](https://github.com/ashish4321) | [LinkedIn](https://www.linkedin.com/in/ashish1412)
-- **Madhurya** - [GitHub](https://github.com/madhurya13wells) | [LinkedIn](https://www.linkedin.com/in/madhurya?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
+- **Madhurya** - [GitHub](https://github.com/madhurya13wells) | [LinkedIn](https://www.linkedin.com/in/madhurya)
 - **Ashwini** - [GitHub](https://github.com/Ashwini19nayak) | [LinkedIn](#)
 - **Saraiah** - [GitHub](https://github.com/saraiah-avula) | [LinkedIn](https://www.linkedin.com/in/saraiah-avula-035982206/)
