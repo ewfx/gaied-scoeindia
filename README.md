@@ -2,13 +2,13 @@
 
 ## 📌 Table of Contents
 - [Introduction](#-introduction)
-- [Demo](#demo)
+- [Demo](#-demo)
 - [Inspiration](#-inspiration)
-- [What It Does](#-what-it-does)
-- [How We Built It](#-how-we-built-it)
+- [What It Does](#%EF%B8%8F-what-it-does)
+- [How We Built It](#%EF%B8%8F-how-we-built-it)
 - [Challenges We Faced](#-challenges-we-faced)
 - [How to Run](#-how-to-run)
-- [Tech Stack](#-tech-stack)
+- [Tech Stack](#%EF%B8%8F-tech-stack)
 - [Team](#-team)
 
 ---
@@ -19,7 +19,7 @@ This AI powered tool automates email classification and data extraction using Ge
 ## 🎥 Demo
 🔗 [Live Demo](#) (if applicable) 
 
-📹 [Video Demo](artifacts/demo/VideoDemo.MP4)
+📹 [Video Demo](artifacts/demo/DemoVideo.MP4)
 
 ### 🖼️ Screenshots:
 
