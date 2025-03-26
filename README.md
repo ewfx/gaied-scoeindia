@@ -14,7 +14,7 @@
 ---
 
 ## 🎯 Introduction
-This project automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time. It also involves an UI where users can upload the email file and view the classification response. 
+This AI powered tool automates email classification and data extraction using Gen AI LLMs to improve efficiency, accuracy and turnaround time for responding emails and generates classified service requests. Its offering a user interface to end users where they upload the email file, pdf and image files and view the classification response. 
 
 ## 🎥 Demo
 🔗 [Live Demo](#) (if applicable) 
@@ -71,7 +71,7 @@ PyMuPDF (fitz): For extracting text from PDF files.
 8) BeautifulSoup: For HTML content parsing.
 9) ReactJS: To build the UI.
 10) Postman: To test the Api.
-11) IDE: For developing the project.
+11) Jupyter and VSCode IDE: For developing the project.
 12) Canva: For creating the demo video.
 
 ## 🚧 Challenges We Faced
@@ -132,6 +132,6 @@ UI will be up and running on http://localhost:5000
 ## 👥 Team
 - **Sparsh** - [GitHub](https://github.com/SparshJain2000) | [LinkedIn](https://www.linkedin.com/in/jain-sparsh/)
 - **Ashish** - [GitHub](https://github.com/ashish4321) | [LinkedIn](https://www.linkedin.com/in/ashish1412)
-- **Madhurya** - [GitHub](https://github.com/madhurya13wells) | [LinkedIn](https://www.linkedin.com/in/madhurya?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
+- **Madhurya** - [GitHub](https://github.com/madhurya13wells) | [LinkedIn](https://www.linkedin.com/in/madhurya)
 - **Ashwini** - [GitHub](https://github.com/Ashwini19nayak) | [LinkedIn](#)
 - **Saraiah** - [GitHub](https://github.com/saraiah-avula) | [LinkedIn](https://www.linkedin.com/in/saraiah-avula-035982206/)
